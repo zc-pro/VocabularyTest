@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.mapper.BatchProcessRecordMapper">
+
+    <resultMap id="BaseResultMap" type="org.example.pojo.BatchProcessRecord">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+            <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+            <result property="deletedAt" column="deleted_at" jdbcType="TIMESTAMP"/>
+            <result property="wordListIds" column="word_list_ids" jdbcType="VARCHAR"/>
+            <result property="myVocabulary" column="my_vocabulary" jdbcType="BIGINT"/>
+            <result property="vocabulary" column="vocabulary" jdbcType="BIGINT"/>
+            <result property="difference" column="difference" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,created_at,updated_at,
+        deleted_at,word_list_ids,my_vocabulary,
+        vocabulary,difference
+    </sql>
+</mapper>
