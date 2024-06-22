@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Author 吴圳城
  * @Create 2024/6/22 下午9:09
  * @Version 1.0
- * Description: 批处理
+ * Description: 批处理类
  */
 @RestController
 @RequestMapping("batch-api")
