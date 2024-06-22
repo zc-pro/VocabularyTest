@@ -37,5 +37,4 @@ public class LoginJudgedInterceptor implements HandlerInterceptor {
         response.getWriter().print(json);
         return false;
     }
-
 }

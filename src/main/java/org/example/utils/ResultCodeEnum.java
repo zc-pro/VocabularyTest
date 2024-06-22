@@ -13,6 +13,7 @@ public enum ResultCodeEnum {
     ACCOUNT_USED(502, "学号已被使用"),
 
     PASSWORD_ERROR(503,"密码错误"),
+
     NOTLOGIN(504,"notLogin"),
 
     USERNAME_USED(505,"userNameUsed");

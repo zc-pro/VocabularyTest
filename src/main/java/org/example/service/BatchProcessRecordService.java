@@ -2,6 +2,7 @@ package org.example.service;
 
 import org.example.pojo.BatchProcessRecord;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.example.utils.Result;
 
 /**
 * @author a1380
@@ -10,4 +11,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface BatchProcessRecordService extends IService<BatchProcessRecord> {
 
+    Result getProcessFourGrade();
+
+    Result getProcessSixGrade();
 }

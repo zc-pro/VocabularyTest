@@ -37,4 +37,5 @@ public class BasicController {
         Result result = userInfoService.getUserInfo(authorization);
         return result;
     }
+
 }
