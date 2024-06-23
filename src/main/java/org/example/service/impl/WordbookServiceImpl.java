@@ -102,10 +102,7 @@ public class WordbookServiceImpl extends ServiceImpl<WordbookMapper, Wordbook>
             System.out.println(userInfo.getBasicVocabulary());
             String vocabularyString = userInfo.getBasicVocabulary();
             String[] vocabularyArray = new String[]{};
-            if(vocabularyString.charAt(0)!='[') {
-                vocabularyArray = new String[]{vocabularyString};
-            }
-            else {
+            if(!vocabularyString.isEmpty()) {
                 vocabularyArray = userInfo.getBasicVocabulary().substring(1, vocabularyString.length() - 1).split(",");
             }
             for (String temp:vocabularyArray){
