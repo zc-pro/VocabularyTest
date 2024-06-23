@@ -1,13 +1,21 @@
 package org.example.controller;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.example.service.BatchProcessRecordService;
 import org.example.service.impl.BatchProcessRecordServiceImpl;
 import org.example.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * ClassName: BatchProcessController
@@ -36,4 +44,11 @@ public class BatchProcessController {
         Result result = batchProcessRecordService.getProcessSixGrade();
         return result;
     }
+
+    @PostMapping("word/VerifyAlgorithm")
+    public Result verifyAlgorithm(){
+        Result result = batchProcessRecordService.verifyAlgorithm();
+        return result;
+    }
+
 }

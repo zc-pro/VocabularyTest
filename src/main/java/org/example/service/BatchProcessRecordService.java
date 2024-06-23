@@ -14,4 +14,6 @@ public interface BatchProcessRecordService extends IService<BatchProcessRecord> 
     Result getProcessFourGrade();
 
     Result getProcessSixGrade();
+
+    Result verifyAlgorithm();
 }
