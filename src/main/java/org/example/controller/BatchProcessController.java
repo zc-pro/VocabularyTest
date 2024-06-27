@@ -47,6 +47,7 @@ public class BatchProcessController {
 
     @PostMapping("word/VerifyAlgorithm")
     public Result verifyAlgorithm(){
+//        System.out.println("1111");
         Result result = batchProcessRecordService.verifyAlgorithm();
         return result;
     }

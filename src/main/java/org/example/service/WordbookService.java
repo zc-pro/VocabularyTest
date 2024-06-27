@@ -21,4 +21,8 @@ public interface WordbookService extends IService<Wordbook> {
     Result postList1(String authorization, Map<String,Object> chooseWord);
 
     Result getVocabulary(String authorization, Map<String, Object> chooseWord);
+
+    int Vocabulary(List<Word> list);
+
+    Result JudgeUserWordLevel( List<Word> wordList);
 }

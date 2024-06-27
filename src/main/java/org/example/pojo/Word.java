@@ -26,4 +26,37 @@ public class Word {
                 ", known=" + known +
                 '}';
     }
+
+    public Word(Integer id, String word, Integer known) {
+        this.id = id;
+        this.word = word;
+        this.known = known;
+    }
+
+    public Word() {
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getWord() {
+        return word;
+    }
+
+    public void setWord(String word) {
+        this.word = word;
+    }
+
+    public int getKnown() {
+        return known;
+    }
+
+    public void setKnown(int known) {
+        this.known = known;
+    }
+
+    public int getId() {
+        return id;
+    }
 }

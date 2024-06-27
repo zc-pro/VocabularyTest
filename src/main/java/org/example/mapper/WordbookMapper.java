@@ -1,7 +1,12 @@
 package org.example.mapper;
 
+import org.apache.ibatis.annotations.Param;
+import org.apache.poi.ss.usermodel.Row;
+import org.example.pojo.Word;
 import org.example.pojo.Wordbook;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
 * @author a1380
@@ -11,6 +16,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface WordbookMapper extends BaseMapper<Wordbook> {
 
+    List<Word> selectList(@Param("list") List<String> list);
 }
 
 

@@ -12,4 +12,13 @@
     <sql id="Base_Column_List">
         id,word
     </sql>
+
+    <select id="selectList" resultType="org.example.pojo.Word">
+        select id, word
+        from wordbook
+        where word in
+        <foreach item="item" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
 </mapper>
