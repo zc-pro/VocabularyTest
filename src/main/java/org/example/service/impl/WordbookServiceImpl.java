@@ -481,18 +481,6 @@ public class WordbookServiceImpl extends ServiceImpl<WordbookMapper, Wordbook>
         UserInfo userInfo = userInfoMapper.selectById(userId);
         if(userInfo!=null) {
 
-            //  List<HashMap> result = new ArrayList();
-            //ArrayList resultList = (ArrayList)(chooseWord.get("WordList"));
-            //
-            //for (Object r : resultList) {
-            //    HashMap temp = (HashMap) r;
-            //    temp.remove("known");
-            //    result.add(temp);
-            //}
-
-
-            //JudgeUserWordLevel(chooseWord);
-
             ArrayList<Word> wordList1111= (ArrayList<Word>) chooseWord.get("WordList");
             List<LinkedHashMap<String, Object>> wordMaps = (List<LinkedHashMap<String, Object>>) chooseWord.get("WordList");
             List<Word> wordlist = new ArrayList<>();
@@ -506,10 +494,7 @@ public class WordbookServiceImpl extends ServiceImpl<WordbookMapper, Wordbook>
                 Word wordObj = new Word(id, word, known);
                 wordlist.add(wordObj);
             }
-
             return JudgeUserWordLevel(wordlist);
-
-            //return Result.ok("a");
         }
         return Result.build(null, ResultCodeEnum.NOTLOGIN);
     }
@@ -576,7 +561,6 @@ public class WordbookServiceImpl extends ServiceImpl<WordbookMapper, Wordbook>
         }
 
         // 假设列表中的最后一个元素的ID代表了总词汇量
-        //int totalWords = wordListArray[list.size() - 1].getId();
         int totalWords=0;
         if(wordListArray.length-40<=20){
             totalWords=5000;
@@ -589,7 +573,6 @@ public class WordbookServiceImpl extends ServiceImpl<WordbookMapper, Wordbook>
             totalWords=41000;
 
         }
-        //int totalWords= WordbookServiceImpl.totalWords;
 
         // 定义层次权重，采用指数衰减的方式
         double[] weights = {1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.1, 0.1};
@@ -670,7 +653,6 @@ public class WordbookServiceImpl extends ServiceImpl<WordbookMapper, Wordbook>
         }
         return estimatedVocabulary;
     }
-
 
     private List<Integer> generateRandomNumbers(Random rand, int count, int min, int max) {
         List<Integer> numbers = new ArrayList<>(count);

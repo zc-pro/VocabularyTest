@@ -1,16 +1,12 @@
 package org.example.controller;
 
-import org.example.pojo.Word;
-import org.example.pojo.WordList;
 import org.example.service.WordbookService;
 import org.example.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * ClassName: WordController

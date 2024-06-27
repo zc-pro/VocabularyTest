@@ -32,22 +32,16 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo>
     private UserInfoMapper userInfoMapper;
     @Autowired
     private JwtHelper jwtHelper;
-//    @Autowired
-//    private UserInfo userInfo;
-
     @Override
     public Result UserLogin(UserInfo userInfo) {
 
         //根据账号查询
-//        System.out.println("userInfo.account = " + userInfo.getAccount());
         LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(UserInfo::getAccount,userInfo.getAccount());
         UserInfo loginUserAccount = userInfoMapper.selectOne(queryWrapper);
-//        System.out.println("loginUserAccount = " + loginUserAccount);
         //账号判断
         if(loginUserAccount == null){
             //账号错误
-//            System.out.println("userInfo = " + userInfo+"登录失败");
             return  Result.build(null,ResultCodeEnum.USERNAME_ERROR);
         }
         //判断密码
@@ -58,7 +52,6 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo>
             String token = jwtHelper.createToken(Long.valueOf(loginUserAccount.getId()));
             Map result = new HashMap();
             result.put("token",token);
-//            System.out.println("userInfo = " + userInfo+"登录成功");
             return Result.ok(result);
         }
         //密码错误
@@ -81,7 +74,6 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo>
         userInfo.setCreatedAt(date);
         userInfo.setUpdatedAt(date);
         int rows = userInfoMapper.insert(userInfo);
-//        System.out.println("userInfo = " + userInfo);
         return Result.ok(null);
     }
 
@@ -104,13 +96,10 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo>
 
     @Override
     public Result getUserInfo(String authorization) {
-//        System.out.println("authorization = " + authorization);
         if(jwtHelper.isExpiration(authorization)){
             return Result.build(null, ResultCodeEnum.NOTLOGIN);
         }
         int userId = jwtHelper.getUserId(authorization).intValue();
-//        System.out.println("authorization = " + authorization);
-//        System.out.println("userId = " + userId);
         UserInfo userInfo = userInfoMapper.selectById(userId);
         if(userInfo!=null){
             Map result = new HashMap();

@@ -26,14 +26,12 @@ public class BasicController {
 
     @PostMapping("setGrade")
     public Result setUserGrade(@RequestHeader String authorization, @RequestBody UserInfo userInfo){
-//        System.out.println("authorization = " + authorization + ", userInfo = " + userInfo);
         Result result = userInfoService.setUserGrade(authorization, userInfo);
         return  result;
     }
 
     @GetMapping("getUserInfo")
     public Result getUserInfo(@RequestHeader String authorization){
-//        System.out.println("authorization = " + authorization);
         Result result = userInfoService.getUserInfo(authorization);
         return result;
     }
