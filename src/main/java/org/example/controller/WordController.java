@@ -32,7 +32,6 @@ public class WordController {
 
     @PostMapping("postList1")
     public Result postList1(@RequestHeader String authorization, @RequestBody Map<String, Object> chooseWord){
-//        System.out.println("authorization = " + authorization + ", chooseWord = " + chooseWord);
         Result result = wordbookService.postList1(authorization, chooseWord);
         return  result;
     }

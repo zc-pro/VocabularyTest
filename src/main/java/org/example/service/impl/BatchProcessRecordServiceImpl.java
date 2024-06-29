@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalTime;
 import java.util.*;
 
 /**
@@ -79,6 +80,7 @@ public class BatchProcessRecordServiceImpl extends ServiceImpl<BatchProcessRecor
         // 定义Excel文件路径
         // 用于存储Excel中的所有数据
         String filePath = "excel/JAVA自动化抓取官网词汇.xlsx"; // Excel文件的路径，相对于类路径
+//        String filePath = "excel/auto2.xlsx"; // Excel文件的路径，相对于类路径
         List<List<String>> data = new ArrayList<>();
         // 用于存储每组数据的验证结果
         List<HashMap> resultMapList = new ArrayList<>();
@@ -101,7 +103,6 @@ public class BatchProcessRecordServiceImpl extends ServiceImpl<BatchProcessRecor
             // 用于记录实际在自己的语料库中查询到的词汇量
             int calculated_words = 0; //实际在自己的语料库查询到的并计入算法单词数
             List<Word> wordList = new ArrayList<>();
-//            List<HashMap> maps = new ArrayList<>();
             int test=0;
             while (rowIterator.hasNext()) {
                Row row = rowIterator.next();
@@ -134,52 +135,17 @@ public class BatchProcessRecordServiceImpl extends ServiceImpl<BatchProcessRecor
                    }
 
                    if(!wordList.isEmpty()){
-                       test = wordbookService.Vocabulary(wordList)*4/3;
-                       System.out.println("wordbookService.Vocabulary(wordList): "+ test);
+                       System.out.println(wordList.size());
+                       int temp = wordbookService.Vocabulary(wordList);
+                       System.out.println("未修正的单词量："+temp);
+                       test = temp*4/3;
+                       System.out.println("修正后的单词量："+test);
                        testResult.add(test);
                    }
-////                   if(rowIterator.hasNext()){
-////                       Row rowTestVocabulary = rowIterator.next();
-////                       cellIterator = rowTestVocabulary.cellIterator();
-////                       if(cellIterator.hasNext()){
-////                           preplyResult= (int)Double.parseDouble(getCellValue(cellIterator.next()));
-////                       }
-////                   }
-//                   HashMap map = new HashMap();
-//                   map.put(preplyResult, testResult);
-//                   resultMapList.add(map);
-////                   resultList.add(wordList);
                    round++;
                }
                round++;
             }
-            //接下来调用算法
-
-//                // 用于存储当前行的数据
-//                List<String> rowData = new ArrayList<>();
-//                // 遍历当前行的每个单元格
-//                Iterator<Cell> cellIterator = row.cellIterator();
-//                while (cellIterator.hasNext()) {
-//                    Cell cell = cellIterator.next();
-//                    // 提取单元格的值
-//                    String cellValue = getCellValue(cell);
-//
-//                    // 每处理完3行数据，记录一次验证结果
-//                    if(round%3==2){
-//                        preply_vocabulary = cellValue.substring(0,cellValue.length()-2);
-//                        HashMap resultMap = new HashMap();
-//                        resultMap.put("round", round/3+1);
-//                        resultMap.put("test_vocabulary", test_vocabulary);
-//                        resultMap.put("preply_vocabulary",preply_vocabulary);
-//                        resultMap.put("calculated_words",calculated_words);
-//                        resultMapList.add(resultMap);
-//                    }
-//                    // 将单元格的值添加到当前行的数据列表中
-//                    rowData.add(cellValue);
-//                }
-//                // 将当前行的数据添加到Excel的全部数据列表中
-//                data.add(rowData);
-                // 更新当前组数据的计数
         } catch (Exception e) {
             // 处理异常情况
             e.printStackTrace();
@@ -221,7 +187,7 @@ public class BatchProcessRecordServiceImpl extends ServiceImpl<BatchProcessRecor
         Map result = new HashMap();
 
         //将结果输出到excel里面
-        String resultfilePath = "D:\\result\\output.xlxs";
+        String resultfilePath = "D:\\result\\output3-10.xlxs";
 //        try (Workbook workbook = new XSSFWorkbook();
 //             FileOutputStream fileOut = new FileOutputStream(resultfilePath)) {
 //
@@ -287,7 +253,7 @@ public class BatchProcessRecordServiceImpl extends ServiceImpl<BatchProcessRecor
         return Result.ok(result);
     }
 
-        private String getCellValue(Cell cell) {
+    private String getCellValue(Cell cell) {
             switch (cell.getCellType()) {
                 case STRING:
                     return cell.getStringCellValue();

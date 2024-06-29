@@ -181,7 +181,7 @@ public class WordbookServiceImpl extends ServiceImpl<WordbookMapper, Wordbook>
             int randCount = 0;
             int shouldRand[]=new int[10];
             for(int i = 0; i < numLayers; i++) {
-                // 计算百分比(權重/縂權重)
+                // 计算百分比(权重/总权重)
                 double tmpPer = weights[i] / totalWeight;
                 //权重*采样单词个数,权值越少(),采样范围越小
                 int tmpSize = (int) Math.round(tmpPer * sampleSize);;
@@ -198,6 +198,11 @@ public class WordbookServiceImpl extends ServiceImpl<WordbookMapper, Wordbook>
             }else if(randCount > sampleSize){  //总随机数大于采样数量,减少第一层
                 shouldRand[0]-=randCount-sampleSize;
             }
+
+            for(int i=0;i<shouldRand.length;i++){
+                System.out.println("shouldRand[" +i+"]="+ shouldRand[i]);
+            }
+
 
             Random rand = new Random(System.currentTimeMillis());
 
@@ -571,8 +576,20 @@ public class WordbookServiceImpl extends ServiceImpl<WordbookMapper, Wordbook>
             totalWords=25000;
         } else if (wordListArray.length-40>=60) {
             totalWords=41000;
-
         }
+
+//        if(wordListArray.length-40==30){
+//            totalWords=5000;
+//        } else if (wordListArray.length-40==60) {
+//            totalWords=15000;
+//
+//        } else if (wordListArray.length-40==80) {
+//            totalWords=25000;
+//        } else if (wordListArray.length-40==100) {
+//            totalWords=41000;
+//
+//        }
+
 
         // 定义层次权重，采用指数衰减的方式
         double[] weights = {1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.1, 0.1};
@@ -666,6 +683,19 @@ public class WordbookServiceImpl extends ServiceImpl<WordbookMapper, Wordbook>
         return numbers;
     }
 
+    /**
+     * 该函数使用Java 8的Stream API生成指定数量（count）的随机整数，这些整数位于指定范围（from到to）内，并以List<Integer>形式返回。具体实现包括：
+     * 使用Random类创建一个随机数生成器。
+     * 通过IntStream.generate()方法生成一个无限的、独特的随机整数流。
+     * 使用distinct()方法确保生成的随机数唯一，避免重复。
+     * 使用limit()方法限制生成的随机数数量为指定的count。
+     * 使用boxed()方法将整数流转换为Integer流。
+     * 最后，使用collect()方法将流收集到一个List<Integer>对象中并返回。
+     * @param count
+     * @param from
+     * @param to
+     * @return
+     */
     private List<Integer> generateRandomNumbersJava(int count, int from, int to) {
         Random rand = new Random();
         return IntStream.generate(() -> from + rand.nextInt(to - from + 1))
